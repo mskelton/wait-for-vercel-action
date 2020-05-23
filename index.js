@@ -5,7 +5,7 @@ const axios = require("axios")
 const sleep = (seconds) =>
   new Promise((resolve) => setTimeout(resolve, seconds * 1000))
 
-async function getDeployment(sha) {
+async function getBranchUrl(sha) {
   const url = `https://api.vercel.com/v5/now/deployments?meta-githubCommitSha=${sha}`
   const { data } = await axios.get(url, {
     headers: {
@@ -18,6 +18,11 @@ async function getDeployment(sha) {
   return `https://${data.deployments[0].url}`
 }
 
+function getUrl(sha) {
+  // return branch === "master" ? getProdUrl() : getBranchUrl(sha)
+  return getBranchUrl(sha)
+}
+
 async function waitForDeployment() {
   const sha = github.context.payload.head_commit.id
   const timeout = +core.getInput("timeout") * 1000
@@ -27,7 +32,7 @@ async function waitForDeployment() {
 
   while (new Date().getTime() < endTime) {
     try {
-      return await getDeployment(sha)
+      return await getUrl(sha)
     } catch (e) {
       console.log(`Url unavailable. Attempt ${attempt++}.`)
       await sleep(2)
@@ -40,6 +45,7 @@ async function waitForDeployment() {
 ;(async () => {
   try {
     const url = await waitForDeployment()
+    console.log(github.context.payload)
 
     console.log("Url found!", url)
     core.setOutput("url", url)
