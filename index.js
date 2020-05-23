@@ -15,7 +15,7 @@ async function getDeployment(sha) {
 
   // If the deployment isn't in the response, this will throw an error and
   // cause a retry.
-  return data.deployments[0].url
+  return `https://${data.deployments[0].url}`
 }
 
 async function waitForDeployment(sha, timeout) {
