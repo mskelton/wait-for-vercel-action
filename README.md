@@ -4,17 +4,23 @@
 
 ## Inputs
 
-- `timeout`: Maximum time to wait for the deployment. Defaults to `120` seconds.
+### `timeout`
+
+Maximum time in seconds to wait for the deployment. Default `120`.
 
 ## Environment Variables
 
-- `VERCEL_TOKEN`: Authorization token generated from your [account settings page](https://vercel.com/account/tokens).
+### `VERCEL_TOKEN`
+
+**Required** Authorization token generated from your [account settings page](https://vercel.com/account/tokens).
 
 ## Outputs
 
-- `url`: The Vercel deployment url that was deployed.
+### `url`
 
-## Usage
+The Vercel deployment url that was deployed.
+
+## Example usage
 
 Basic:
 

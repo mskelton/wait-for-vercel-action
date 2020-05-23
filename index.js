@@ -7,6 +7,7 @@ const sleep = (seconds) =>
 
 async function getDeployment(sha) {
   const url = `https://api.vercel.com/v5/now/deployments?meta-githubCommitSha=${sha}`
+  console.log(process.env.VERCEL_TOKEN !== "")
   const { deployments } = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
@@ -26,6 +27,7 @@ async function waitForDeployment(sha, timeout) {
     try {
       return await getDeployment(sha)
     } catch (e) {
+      console.log(e)
       console.log(`Url unavailable. Attempt ${attempt++}.`)
       await sleep(2)
     }
