@@ -4,6 +4,10 @@
 
 ## Inputs
 
+### `prod-url`
+
+**Required** Production url to wait for on master builds. Branch builds will wait for the deployment url associated with the current commit.
+
 ### `timeout`
 
 Maximum time in seconds to wait for the deployment. Default `120`.
@@ -28,6 +32,8 @@ Basic:
 steps:
   - name: Wait for Vercel deployment
     uses: mskelton/wait-for-vercel-action@v1
+    with:
+      prod-url: example.now.sh
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 ```
@@ -39,6 +45,8 @@ steps:
   - name: Waiting for Vercel deployment
     uses: mskelton/wait-for-vercel-action@v1
     id: wait-for-vercel
+    with:
+      prod-url: example.now.sh
     env:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   - run: npm test

@@ -4,10 +4,13 @@ branding:
   icon: clock
   color: blue
 inputs:
+  prod-url:
+    description: Production url to wait for on master builds.
+    required: true
   timeout:
     description: The max time to run the action (in seconds)
     required: false
-    default: 120
+    default: "120"
 outputs:
   url:
     description: The fully qualified deployment URL

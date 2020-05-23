@@ -18,8 +18,11 @@ async function getDeployment(sha) {
   return `https://${data.deployments[0].url}`
 }
 
-async function waitForDeployment(sha, timeout) {
-  const endTime = new Date().getTime() + timeout * 1000
+async function waitForDeployment() {
+  const sha = github.context.payload.head_commit.id
+  const timeout = +core.getInput("timeout") * 1000
+  const endTime = new Date().getTime() + timeout
+
   let attempt = 1
 
   while (new Date().getTime() < endTime) {
@@ -36,8 +39,7 @@ async function waitForDeployment(sha, timeout) {
 
 ;(async () => {
   try {
-    const sha = github.context.payload.head_commit.id
-    const url = await waitForDeployment(sha, core.getInput("timeout"))
+    const url = await waitForDeployment()
 
     console.log("Url found!", url)
     core.setOutput("url", url)
