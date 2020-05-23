@@ -1,0 +1,16 @@
+name: Wait for Vercel
+description: Wait for Vercel deployment to complete for a commit.
+branding:
+  icon: clock
+  color: blue
+inputs:
+  timeout:
+    description: The max time to run the action (in seconds)
+    required: false
+    default: 60
+outputs:
+  url:
+    description: The fully qualified deployment URL
+runs:
+  using: node12
+  main: index.js

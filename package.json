@@ -1,0 +1,23 @@
+{
+  "name": "wait-for-vercel-action",
+  "version": "1.0.0",
+  "description": "Wait for Vercel deployment to complete for a commit.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mskelton/wait-for-vercel-action.git"
+  },
+  "author": "Mark Skelton",
+  "license": "MIT",
+  "keywords": [
+    "vercel",
+    "zeit",
+    "now",
+    "github-actions"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0",
+    "axios": "^0.19.2"
+  }
+}
