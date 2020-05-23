@@ -33,12 +33,9 @@ async function getBranchUrl(sha) {
 }
 
 function getUrl(sha) {
-  const url =
-    github.context.payload.ref === "refs/heads/master"
-      ? getProdUrl(sha)
-      : getBranchUrl(sha)
-
-  return `http://${url}`
+  return github.context.payload.ref === "refs/heads/master"
+    ? getProdUrl(sha)
+    : getBranchUrl(sha)
 }
 
 async function waitForDeployment() {
@@ -50,7 +47,7 @@ async function waitForDeployment() {
 
   while (new Date().getTime() < endTime) {
     try {
-      return await getUrl(sha)
+      return `http://${await getUrl(sha)}`
     } catch (e) {
       console.log(`Url unavailable. Attempt ${attempt++}.`)
       await sleep(2)
