@@ -23,7 +23,7 @@ async function waitForDeployment(sha, timeout) {
     }
   }
 
-  throw new Error("Timeout reached before deployment was found.")
+  throw new Error(`Timeout reached before deployment for ${sha} was found.`)
 }
 
 ;(async () => {
