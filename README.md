@@ -6,7 +6,7 @@
 
 ### `timeout`
 
-Optional — Maximum time to wait for the deployment. Defaults to `60` seconds.
+Optional — Maximum time to wait for the deployment. Defaults to `120` seconds.
 
 ## Outputs
 

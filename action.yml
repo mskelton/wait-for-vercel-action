@@ -7,7 +7,7 @@ inputs:
   timeout:
     description: The max time to run the action (in seconds)
     required: false
-    default: 60
+    default: 120
 outputs:
   url:
     description: The fully qualified deployment URL
