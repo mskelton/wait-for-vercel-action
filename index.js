@@ -9,7 +9,7 @@ async function getDeployment(sha) {
   const url = `https://api.vercel.com/v5/now/deployments?meta-githubCommitSha=${sha}`
   const { deployments } = await axios.get(url, {
     headers: {
-      Authorization: process.env.VERCEL_TOKEN,
+      Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
     },
   })
 
