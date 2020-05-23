@@ -22,6 +22,8 @@ async function waitForDeployment(sha, timeout) {
       await sleep(2)
     }
   }
+
+  throw new Error("Timeout reached before deployment was found.")
 }
 
 ;(async () => {
