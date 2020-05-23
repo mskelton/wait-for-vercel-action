@@ -44,8 +44,8 @@ async function waitForDeployment() {
 
 ;(async () => {
   try {
-    const url = await waitForDeployment()
     console.log(github.context.payload)
+    const url = await waitForDeployment()
 
     console.log("Url found!", url)
     core.setOutput("url", url)
