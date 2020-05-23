@@ -26,13 +26,9 @@ async function waitForDeployment(sha, timeout) {
 
 ;(async () => {
   try {
-    console.log(github.context.payload)
-    const sha = "hi"
-
-    core.setOutput(
-      "url",
-      await waitForDeployment(sha, core.getInput("timeout"))
-    )
+    const sha = github.context.payload.head_commit.id
+    const url = await waitForDeployment(sha, core.getInput("timeout"))
+    core.setOutput("url", url)
   } catch (err) {
     core.setFailed(err.message)
   }
