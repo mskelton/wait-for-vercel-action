@@ -33,9 +33,12 @@ async function getBranchUrl(sha) {
 }
 
 function getUrl(sha) {
-  return "https://" + github.context.payload.ref === "refs/heads/master"
-    ? getProdUrl(sha)
-    : getBranchUrl(sha)
+  const url =
+    github.context.payload.ref === "refs/heads/master"
+      ? getProdUrl(sha)
+      : getBranchUrl(sha)
+
+  return `http://${url}`
 }
 
 async function waitForDeployment() {
