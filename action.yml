@@ -7,6 +7,9 @@ inputs:
   prod-url:
     description: Production url to wait for on master builds.
     required: true
+  token:
+    description: Vercel authorization token
+    required: true
   timeout:
     description: The max time to run the action (in seconds)
     required: false

@@ -7,7 +7,7 @@ const sleep = (seconds) =>
 
 const headers = {
   headers: {
-    Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
+    Authorization: `Bearer ${core.getInput("token")}`,
   },
 }
 
