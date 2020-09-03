@@ -47,7 +47,7 @@ async function waitForDeployment() {
 
   while (new Date().getTime() < endTime) {
     try {
-      return `http://${await getUrl(sha)}`
+      return `https://${await getUrl(sha)}`
     } catch (e) {
       console.log(`Url unavailable. Attempt ${attempt++}.`)
       await sleep(2)
