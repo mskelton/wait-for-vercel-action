@@ -16,6 +16,10 @@
 
 Maximum time in seconds to wait for the deployment. Default `120`.
 
+### `team-id`
+
+[Vercel team ID](https://vercel.com/docs/api#api-basics/authentication/accessing-resources-owned-by-a-team) if the deployment is owned by a team
+
 ## Outputs
 
 ### `url`

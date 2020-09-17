@@ -24,7 +24,8 @@ async function getProdUrl(sha) {
 }
 
 async function getBranchUrl(sha) {
-  const url = `https://api.vercel.com/v5/now/deployments?meta-githubCommitSha=${sha}`
+  const teamId = core.getInput("team-id")
+  const url = `https://api.vercel.com/v5/now/deployments?${teamId ? `teamId=${teamId}&` : ""}meta-githubCommitSha=${sha}`
   const { data } = await axios.get(url, headers)
 
   // If the deployment isn't in the response, this will throw an error and
