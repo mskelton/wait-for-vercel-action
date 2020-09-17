@@ -10,10 +10,14 @@ inputs:
   token:
     description: Vercel authorization token
     required: true
+  team-id:
+    description: Vercel team ID
   timeout:
     description: The max time to run the action (in seconds)
     required: false
     default: "120"
+  await-build:
+    description: Wait for the deployment to be built
 outputs:
   url:
     description: The fully qualified deployment URL

@@ -20,6 +20,13 @@ async function getProdUrl(sha) {
     throw new Error("Commit sha for prod url didn't match")
   }
 
+  const awaitBuild = core.getInput("await-build")
+
+  if(awaitBuild && data.deployments[0].state !== "READY"){
+    throw Error("Deployment not yet ready")
+  }
+
+
   return data.url
 }
 
@@ -27,6 +34,12 @@ async function getBranchUrl(sha) {
   const teamId = core.getInput("team-id")
   const url = `https://api.vercel.com/v5/now/deployments?${teamId ? `teamId=${teamId}&` : ""}meta-githubCommitSha=${sha}`
   const { data } = await axios.get(url, headers)
+
+  const awaitBuild = core.getInput("await-build")
+
+  if(awaitBuild && data.deployments[0].state !== "READY"){
+    throw Error("Deployment not yet ready")
+  }
 
   // If the deployment isn't in the response, this will throw an error and
   // cause a retry.
