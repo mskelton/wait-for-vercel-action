@@ -16,6 +16,14 @@
 
 Maximum time in seconds to wait for the deployment. Default `120`.
 
+### `await-build`
+
+Wait for the deployment to be built before returning the url.
+
+### `team-id`
+
+[Vercel team ID](https://vercel.com/docs/api#api-basics/authentication/accessing-resources-owned-by-a-team) if the deployment is owned by a team.
+
 ## Outputs
 
 ### `url`
@@ -45,6 +53,7 @@ steps:
     with:
       prod-url: example.now.sh
       token: ${{ secrets.VERCEL_TOKEN }}
+      await-build: true
   - run: npm test
     env:
       ENVIRONMENT_URL: ${{ steps.wait-for-vercel.outputs.url }}
