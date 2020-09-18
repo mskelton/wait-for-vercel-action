@@ -5,6 +5,14 @@ const axios = require("axios")
 const sleep = (seconds) =>
   new Promise((resolve) => setTimeout(resolve, seconds * 1000))
 
+const awaitBuild = (data) => {
+  const awaitBuild = core.getInput("await-build")
+
+  if (awaitBuild && data.deployments[0].state !== "READY") {
+    throw Error("Deployment not yet ready")
+  }
+}
+
 const headers = {
   headers: {
     Authorization: `Bearer ${core.getInput("token")}`,
@@ -20,11 +28,7 @@ async function getProdUrl(sha) {
     throw new Error("Commit sha for prod url didn't match")
   }
 
-  const awaitBuild = core.getInput("await-build")
-
-  if (awaitBuild && data.deployments[0].state !== "READY") {
-    throw Error("Deployment not yet ready")
-  }
+  awaitBuild(data)
 
   return data.url
 }
@@ -34,11 +38,7 @@ async function getBranchUrl(sha) {
   const url = `https://api.vercel.com/v5/now/deployments?${teamId ? `teamId=${teamId}&` : ""}meta-githubCommitSha=${sha}`
   const { data } = await axios.get(url, headers)
 
-  const awaitBuild = core.getInput("await-build")
-
-  if(awaitBuild && data.deployments[0].state !== "READY"){
-    throw Error("Deployment not yet ready")
-  }
+  awaitBuild(data)
 
   // If the deployment isn't in the response, this will throw an error and
   // cause a retry.
