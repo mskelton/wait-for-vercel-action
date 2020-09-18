@@ -22,7 +22,7 @@ Wait for the deployment to be built before returning the url.
 
 ### `team-id`
 
-[Vercel team ID](https://vercel.com/docs/api#api-basics/authentication/accessing-resources-owned-by-a-team) if the deployment is owned by a team
+[Vercel team ID](https://vercel.com/docs/api#api-basics/authentication/accessing-resources-owned-by-a-team) if the deployment is owned by a team.
 
 ## Outputs
 
