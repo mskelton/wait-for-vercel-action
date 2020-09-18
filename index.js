@@ -22,10 +22,9 @@ async function getProdUrl(sha) {
 
   const awaitBuild = core.getInput("await-build")
 
-  if(awaitBuild && data.deployments[0].state !== "READY"){
+  if (awaitBuild && data.deployments[0].state !== "READY") {
     throw Error("Deployment not yet ready")
   }
-
 
   return data.url
 }
