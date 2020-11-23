@@ -20,9 +20,9 @@ Maximum time in seconds to wait for the deployment. Default `120`.
 
 Wait for the deployment to be built before returning the url.
 
-### `team-id`
+### `project-id`
 
-[Vercel team ID](https://vercel.com/docs/api#api-basics/authentication/accessing-resources-owned-by-a-team) if the deployment is owned by a team.
+Vercel project ID if you only want to wait for builds for a specific project.
 
 ## Outputs
 

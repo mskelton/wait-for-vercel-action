@@ -12,6 +12,8 @@ inputs:
     required: true
   team-id:
     description: Vercel team ID
+  project-id:
+    description: Vercel project ID
   timeout:
     description: The max time to run the action (in seconds)
     required: false
