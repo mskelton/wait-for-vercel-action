@@ -34,8 +34,13 @@ async function getProdUrl(sha) {
 }
 
 async function getBranchUrl(sha) {
-  const teamId = core.getInput("team-id")
-  const url = `https://api.vercel.com/v5/now/deployments?${teamId ? `teamId=${teamId}&` : ""}meta-githubCommitSha=${sha}`
+  const params = new URLSearchParams({
+    teamId: core.getInput("team-id"),
+    projectId: core.getInput("project-id"),
+    "meta-githubCommitSha": sha,
+  })
+
+  const url = `https://api.vercel.com/v5/now/deployments?${params.toString()}`
   const { data } = await axios.get(url, headers)
 
   awaitBuild(data)
