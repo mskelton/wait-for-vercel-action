@@ -2,6 +2,10 @@
 
 > GitHub Action to wait for a Vercel deployment.
 
+## Update December 2020
+
+I will be archiving this action in favor of [github-action-await-vercel](https://github.com/UnlyEd/github-action-await-vercel) created by UnlyEd. They have greatly improved on the concept I developed here by using TypeScript, adding tests, adding fantastic documentation, and much more. I will be archiving this repo in the near future, but it will remain available so as to not break existing users of this action.
+
 ## Inputs
 
 ### `prod-url`
